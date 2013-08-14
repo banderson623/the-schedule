@@ -11,7 +11,8 @@ eric = User.create!(name: "Eric Ritchey", email_address:"eric@microsoft.com");
 
 
 
-meeting = Meeting.create!(title: "August Soccer board meeting", 
+meeting = Meeting.create!(title: "August Soccer board meeting",
+                       location: "Gilbert Elementary School, Matthews Drive Gilbert, IA",
                        meets_at: 100.days.from_now,
                        duration: 120, 
                           owner: brian)

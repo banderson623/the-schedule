@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130814184541) do
+ActiveRecord::Schema.define(version: 20130814200038) do
 
   create_table "agendas", force: true do |t|
     t.integer  "order"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20130814184541) do
   create_table "attendees", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status"
+    t.integer  "status",     default: 1
     t.integer  "meeting_id"
     t.integer  "user_id"
   end
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20130814184541) do
 
   create_table "items", force: true do |t|
     t.text     "body"
-    t.integer  "duration"
-    t.boolean  "hidden"
+    t.integer  "duration",   default: 15
+    t.boolean  "hidden",     default: false
     t.text     "teaser"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -61,10 +61,11 @@ ActiveRecord::Schema.define(version: 20130814184541) do
   create_table "meetings", force: true do |t|
     t.string   "title"
     t.datetime "meets_at"
-    t.integer  "duration"
+    t.integer  "duration",   default: 60
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "location"
   end
 
   add_index "meetings", ["user_id"], name: "index_meetings_on_user_id", using: :btree

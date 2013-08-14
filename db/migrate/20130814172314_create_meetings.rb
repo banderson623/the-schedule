@@ -3,7 +3,9 @@ class CreateMeetings < ActiveRecord::Migration
     create_table :meetings do |t|
       t.string :title
       t.datetime :meets_at
-      t.integer :duration
+
+      # This is time in minutes
+      t.integer :duration, default: 60
 
       t.timestamps
     end
