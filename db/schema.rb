@@ -24,15 +24,15 @@ ActiveRecord::Schema.define(version: 20130814184541) do
   add_index "agendas", ["item_id"], name: "index_agendas_on_item_id", using: :btree
   add_index "agendas", ["meeting_id"], name: "index_agendas_on_meeting_id", using: :btree
 
-  create_table "attendies", force: true do |t|
+  create_table "attendees", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "meeting_id"
     t.integer  "user_id"
   end
 
-  add_index "attendies", ["meeting_id"], name: "index_attendies_on_meeting_id", using: :btree
-  add_index "attendies", ["user_id"], name: "index_attendies_on_user_id", using: :btree
+  add_index "attendees", ["meeting_id"], name: "index_attendees_on_meeting_id", using: :btree
+  add_index "attendees", ["user_id"], name: "index_attendees_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "body"
