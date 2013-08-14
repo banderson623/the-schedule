@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  agenda: MyString
+  meeting_id: 
+  item_id: 
+  order: 1
+
+two:
+  agenda: MyString
+  meeting_id: 
+  item_id: 
+  order: 1
