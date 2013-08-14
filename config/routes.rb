@@ -1,6 +1,4 @@
 TheSchedule::Application.routes.draw do
-  resources :items
-
   resources :meetings
 
   resources :users
