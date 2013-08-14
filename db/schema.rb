@@ -11,13 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130814181209) do
+ActiveRecord::Schema.define(version: 20130814184541) do
 
   create_table "agendas", force: true do |t|
     t.integer  "order"
+    t.integer  "item_id"
+    t.integer  "meeting_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "agendas", ["item_id"], name: "index_agendas_on_item_id", using: :btree
+  add_index "agendas", ["meeting_id"], name: "index_agendas_on_meeting_id", using: :btree
+
+  create_table "attendies", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "meeting_id"
+    t.integer  "user_id"
+  end
+
+  add_index "attendies", ["meeting_id"], name: "index_attendies_on_meeting_id", using: :btree
+  add_index "attendies", ["user_id"], name: "index_attendies_on_user_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.text     "body"
+    t.integer  "item_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["item_id"], name: "index_comments_on_item_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "items", force: true do |t|
     t.text     "body"
@@ -26,8 +52,10 @@ ActiveRecord::Schema.define(version: 20130814181209) do
     t.text     "teaser"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "{:index=>true}_id"
+    t.integer  "user_id"
   end
+
+  add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
 
   create_table "meetings", force: true do |t|
     t.string   "title"
@@ -35,8 +63,10 @@ ActiveRecord::Schema.define(version: 20130814181209) do
     t.integer  "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "{:index=>true}_id"
+    t.integer  "user_id"
   end
+
+  add_index "meetings", ["user_id"], name: "index_meetings_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

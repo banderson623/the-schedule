@@ -1,4 +1,6 @@
 TheSchedule::Application.routes.draw do
+  resources :comments
+
   resources :items
 
   resources :meetings
