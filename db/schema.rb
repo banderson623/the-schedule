@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20130814184541) do
   create_table "attendees", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
     t.integer  "meeting_id"
     t.integer  "user_id"
   end
