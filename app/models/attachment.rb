@@ -4,7 +4,7 @@ class Attachment < ActiveRecord::Base
   belongs_to :item
   belongs_to :user
 
-  mount_uploader :attachment_name, AttachmentUploader
+  mount_uploader :file, AttachmentUploader
 
   # This must be connected to an item and a user
   validates :item_id, :user_id, presence: true

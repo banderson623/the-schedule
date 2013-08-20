@@ -3,7 +3,7 @@ class CreateAttachments < ActiveRecord::Migration
     create_table :attachments do |t|
       t.references :item
       t.references :user
-      t.string :attachment_name
+      t.string :file
 
       t.timestamps
     end

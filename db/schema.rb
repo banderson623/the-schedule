@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20130820015729) do
   create_table "attachments", force: true do |t|
     t.integer  "item_id"
     t.integer  "user_id"
-    t.string   "attachment_name"
+    t.string   "file"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

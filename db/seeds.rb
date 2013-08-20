@@ -7,18 +7,21 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # For a full reset do this!
+# Call:
+#     rake db:seed RESET=yes
+# 
 if(ENV && ENV['RESET'].present?)
   # Force rails to load all models, lamo!
   Dir.glob(File.join(Rails.root, "app/models/*.rb")).each{|f| require f}
   
-  puts "Deleting the following"
+  puts "Deleting the following:3"
   puts "Models " + " " * 24 + " Count"
   puts "-"*40
   
   # Okay lets thrash these suckers!
   ActiveRecord::Base.subclasses.each do |mod|
     if(mod.respond_to?(:destroy_all) && mod != ActiveRecord::SchemaMigration)
-      puts "#{mod.name.to_s.ljust(30)} #{mod.count}"
+      puts "#{mod.name.to_s.ljust(30)} #{mod.count.to_s.rjust(5)}"
       mod.destroy_all
     end
   end
@@ -55,3 +58,8 @@ Comment.create!(body: "That is a load of crap!",
 Comment.create!(body: "Great idea!",
                 user: eric,
                 item: eat)
+                
+test_attachment = Attachment.new(file: File.new(File.join(Rails.root,"public","500.html")),
+                                 user: review.creator,
+                                 item: review)
+test_attachment.save!
