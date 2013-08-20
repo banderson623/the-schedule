@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130814200038) do
+ActiveRecord::Schema.define(version: 20130820015729) do
 
   create_table "agendas", force: true do |t|
     t.integer  "order"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20130814200038) do
 
   add_index "agendas", ["item_id"], name: "index_agendas_on_item_id", using: :btree
   add_index "agendas", ["meeting_id"], name: "index_agendas_on_meeting_id", using: :btree
+
+  create_table "attachments", force: true do |t|
+    t.integer  "item_id"
+    t.integer  "user_id"
+    t.string   "attachment_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "attendees", force: true do |t|
     t.datetime "created_at"

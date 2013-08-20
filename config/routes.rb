@@ -1,4 +1,6 @@
 TheSchedule::Application.routes.draw do
+  resources :attachments
+
   resources :comments
 
   resources :items

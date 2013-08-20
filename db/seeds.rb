@@ -6,10 +6,26 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# For a full reset do this!
+if(ENV && ENV['RESET'].present?)
+  # Force rails to load all models, lamo!
+  Dir.glob(File.join(Rails.root, "app/models/*.rb")).each{|f| require f}
+  
+  puts "Deleting the following"
+  puts "Models " + " " * 24 + " Count"
+  puts "-"*40
+  
+  # Okay lets thrash these suckers!
+  ActiveRecord::Base.subclasses.each do |mod|
+    if(mod.respond_to?(:destroy_all) && mod != ActiveRecord::SchemaMigration)
+      puts "#{mod.name.to_s.ljust(30)} #{mod.count}"
+      mod.destroy_all
+    end
+  end
+end
+
 brian = User.create!(name: "Brian Anderson", email_address:"brian@bitbyteyum.com");
 eric = User.create!(name: "Eric Ritchey", email_address:"eric@microsoft.com");
-
-
 
 meeting = Meeting.create!(title: "August Soccer board meeting",
                        location: "Gilbert Elementary School, Matthews Drive Gilbert, IA",
@@ -31,4 +47,11 @@ eat =   Item.create!(body: "BBQ\nI think we should have Josh handle this again",
 
 meeting.items << review
 meeting.items << eat
-                       
+
+Comment.create!(body: "That is a load of crap!",
+                user: brian,
+                item: review)
+
+Comment.create!(body: "Great idea!",
+                user: eric,
+                item: eat)

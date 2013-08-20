@@ -6,4 +6,7 @@ class Attachment < ActiveRecord::Base
 
   mount_uploader :attachment_name, AttachmentUploader
 
+  # This must be connected to an item and a user
+  validates :item_id, :user_id, presence: true
+
 end
