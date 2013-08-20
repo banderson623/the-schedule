@@ -9,4 +9,7 @@ class Attachment < ActiveRecord::Base
   # This must be connected to an item and a user
   validates :item_id, :user_id, presence: true
 
+  # def file_name
+  #   
+  # end
 end

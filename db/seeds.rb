@@ -59,7 +59,8 @@ Comment.create!(body: "Great idea!",
                 user: eric,
                 item: eat)
                 
-test_attachment = Attachment.new(file: File.new(File.join(Rails.root,"public","500.html")),
+test_attachment = Attachment.new(file: File.new(File.join(Rails.root,"public","groovy.gif")),
                                  user: review.creator,
                                  item: review)
 test_attachment.save!
+# puts "Attachment file url: #{test_attachment.file.authenticated_url}"
